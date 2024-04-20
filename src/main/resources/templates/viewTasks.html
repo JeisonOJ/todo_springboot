@@ -36,8 +36,8 @@
             <td th:text="${task.status}"></td>
             <td>
                 <div class="d-flex gap-2">
-                    <a href="#" class="btn btn-primary">Update</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
+                    <a th:href="@{/form/{id}(id=${task.id})}" class="btn btn-primary">Update</a>
+                    <a th:href="@{/form/deleteTask/{id}(id=${task.id})}" class="btn btn-danger">Delete</a>
                 </div>
             </td>
           </tr>

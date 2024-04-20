@@ -14,8 +14,30 @@ public class TaskService {
     @Autowired
     private TaskRespository taskRespository;
 
-    public List<Task> findAll(){
+    public List<Task> findAll() {
         return taskRespository.findAll();
+    }
+
+    public Task findById(Long id) {
+        return taskRespository.findById(id).orElse(null);
+    }
+
+    public Task insert(Task task) {
+        return taskRespository.save(task);
+    }
+
+    public Task update(Long id, Task task) {
+
+        Task taskDB = findById(id);
+        if (taskDB == null)
+            return null;
+
+        taskDB = task;
+        return taskRespository.save(taskDB);
+    }
+
+    public void delete(Long id) {
+        taskRespository.deleteById(id);
     }
 
 }
