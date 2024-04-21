@@ -9,6 +9,14 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css"
+    />
     <title th:text="${title}">Document</title>
   </head>
   <body class="bg-dark">
@@ -37,7 +45,7 @@
             class="form-control"
             placeholder="Description"
             id="floatingTextarea"
-            style="height: 100px; resize: none;"
+            style="height: 100px; resize: none"
             th:field="*{description}"
             th:value="${task.description}"
           ></textarea>
@@ -47,23 +55,25 @@
           <input
             type="text"
             class="form-control"
-            id="due_date"
+            id="datepicker"
             placeholder="Due Date"
             th:field="*{dueDate}"
             th:value="${task.dueDate}"
+            autocomplete="off"
           />
-          <label for="due_date">Due Date (YYYY-MM-DD)</label>
+          <label for="datepicker">Due Date (YYYY-MM-DD)</label>
         </div>
         <div class="form-floating mb-3 w-50">
           <input
             type="text"
             class="form-control"
-            id="hour_date"
+            id="timepicker"
             placeholder="Hour Date"
             th:field="*{hourDate}"
             th:value="${task.hourDate}"
+            autocomplete="off"
           />
-          <label for="hour_date">Hour Date (hh:mm:ss)</label>
+          <label for="timepicker">Hour Date (hh:mm:ss)</label>
         </div>
         <div class="form-floating mb-3 w-50">
           <select
@@ -90,5 +100,19 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
+    <script>
+      $(function () {
+        $("#datepicker").datepicker({
+          dateFormat: 'yy-mm-dd',
+          minDate: 0
+        });
+        $("#timepicker").timepicker({
+          timeFormat: "HH:mm"
+        });
+      });
+    </script>
   </body>
 </html>
