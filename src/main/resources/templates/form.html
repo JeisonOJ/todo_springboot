@@ -11,17 +11,17 @@
     />
     <title th:text="${title}">Document</title>
   </head>
-  <body>
+  <body class="bg-dark">
     <div class="container d-flex flex-column align-items-center">
-      <h1 th:text="${title}" class="text-center my-5"></h1>
+      <h1 th:text="${title}" class="text-center my-5 text-light"></h1>
       <form
         th:object="${task}"
         th:action="${action}"
         method="post"
-        class="d-flex justify-content-center flex-column w-50 align-items-center"
+        class="d-flex justify-content-center flex-column w-50 align-items-center border border-light p-5"
       >
         <input type="hidden" th:field="*{id}" th:value="${task.id}" />
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3 w-50">
           <input
             type="text"
             class="form-control"
@@ -32,18 +32,18 @@
           />
           <label for="title">Title</label>
         </div>
-        <div class="form-floating mb-3">
-          <input
-            type="text"
+        <div class="form-floating mb-3 w-50">
+          <textarea
             class="form-control"
-            id="description"
             placeholder="Description"
+            id="floatingTextarea"
+            style="height: 100px; resize: none;"
             th:field="*{description}"
             th:value="${task.description}"
-          />
-          <label for="description">Description</label>
+          ></textarea>
+          <label for="floatingTextarea">Description</label>
         </div>
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3 w-50">
           <input
             type="text"
             class="form-control"
@@ -52,9 +52,9 @@
             th:field="*{dueDate}"
             th:value="${task.dueDate}"
           />
-          <label for="due_date">Due Date (MM/DD/YYYY)</label>
+          <label for="due_date">Due Date (YYYY-MM-DD)</label>
         </div>
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3 w-50">
           <input
             type="text"
             class="form-control"
@@ -63,9 +63,9 @@
             th:field="*{hourDate}"
             th:value="${task.hourDate}"
           />
-          <label for="hour_date">Hour Date (hh:mm AM/PM)</label>
+          <label for="hour_date">Hour Date (hh:mm:ss)</label>
         </div>
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3 w-50">
           <select
             class="form-select"
             id="status"

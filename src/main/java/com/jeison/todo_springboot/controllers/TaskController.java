@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jeison.todo_springboot.models.Task;
 import com.jeison.todo_springboot.services.TaskService;
@@ -18,10 +19,14 @@ public class TaskController {
     private TaskService taskService;
 
     @GetMapping({ "", "/" })
-    public String showAllTasks(Model model) {
-
+    public String showAllTasks(@RequestParam(required = false) String title,@RequestParam(required = false) String status,Model model) {
         model.addAttribute("title", "TO DO - Tasks");
-        model.addAttribute("tasks", taskService.findAll());
+        model.addAttribute("task", new Task());
+        if (title != null || status != null) {
+            model.addAttribute("tasks", taskService.findByTitleAndStatus(title,status));
+        }else{
+            model.addAttribute("tasks", taskService.findAll());
+        }
 
         return "viewTasks";
     }

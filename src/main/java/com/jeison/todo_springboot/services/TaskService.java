@@ -22,6 +22,14 @@ public class TaskService {
         return taskRespository.findById(id).orElse(null);
     }
 
+    public List<Task> findByFullTitle(String name){
+        return taskRespository.findByTitle(name);
+    }
+
+    public List<Task> findByTitle(String name){
+        return taskRespository.findByTitleContaining(name);
+    }
+
     public Task insert(Task task) {
         return taskRespository.save(task);
     }
@@ -38,6 +46,14 @@ public class TaskService {
 
     public void delete(Long id) {
         taskRespository.deleteById(id);
+    }
+
+    public List<Task> findByStatus(String status){
+        return taskRespository.findByStatus(status);
+    }
+
+    public List<Task> findByTitleAndStatus(String title, String status){
+        return taskRespository.findByTitleContainingAndStatusContaining(title,status);
     }
 
 }
